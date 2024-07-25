@@ -1,19 +1,21 @@
 package com.example.method_channel
 
+import android.widget.Toast as WToast
 import io.flutter.embedding.android.FlutterActivity
 import android.os.BatteryManager
 import android.os.Bundle
-import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
-
-class MainActivity: FlutterActivity(){
-      private val CHANNEL = "com.example.method_channel_example/battery"
+class MainActivity: FlutterActivity() {
+    private val CHANNEL = "com.example.method_channel_example/battery"
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { call, result ->
+        MethodChannel(
+            flutterEngine.dartExecutor.binaryMessenger,
+            CHANNEL
+        ).setMethodCallHandler { call, result ->
             if (call.method == "getBatteryLevel") {
                 val batteryLevel = getBatteryLevel()
 
